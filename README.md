@@ -3,6 +3,13 @@
 luakit is a fast, light and simple to use micro-browser framework exensible
 by Lua using the WebKit web content engine and the GTK+ toolkit.
 
+## UG Modifications
+
+This fork is intended as:
+
+a) a code freeze
+b) a tweaked configuration geared specifically toward "kiosk" functionality
+
 ## Dont Panic!
 
 You don't have to be a developer to use luakit on a daily basis. If you are

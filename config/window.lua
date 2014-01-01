@@ -850,8 +850,15 @@ function window.new(uris)
     -- Set initial mode
     w:set_mode()
 
+    -- hide status bar
+    w.sbar.ebox:hide()
+    w.sbar.hidden = true
+
     -- Show window
     w.win:show()
+
+    -- open in fullscreen
+    w.win.fullscreen = true
 
     return w
 end

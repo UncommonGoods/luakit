@@ -73,8 +73,8 @@ function init()
         SELECT id, name, value, host AS domain, path, expiry AS expires,
             isSecure AS secure, isHttpOnly AS http_only
         FROM moz_cookies
-        WHERE lastAccessed >= ? AND expiry >= ?
     ]]
+        -- WHERE lastAccessed >= ? AND expiry >= ?
 
     query_insert = db:compile [[
         INSERT INTO moz_cookies
