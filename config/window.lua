@@ -181,6 +181,7 @@ window.init_funcs = {
         end)
     end,
 
+    --[===[
     tablist_tab_click = function (w)
         w.tablist:add_signal("tab-clicked", function (_, index, mods, button)
             if button == 1 then
@@ -192,6 +193,7 @@ window.init_funcs = {
             end
         end)
     end,
+    ]===]
 
     apply_window_theme = function (w)
         local s, i = w.sbar, w.ibar
@@ -848,7 +850,7 @@ function window.new(uris)
     end
 
     -- Set initial mode
-    w:set_mode()
+    w:set_mode("jail")
 
     -- hide status bar
     w.sbar.ebox:hide()

@@ -161,3 +161,34 @@ new_mode("lua", [[Execute arbitrary Lua commands within the luakit
     end,
     history = {maxlen = 50},
 })
+
+new_mode("jail", [[You pretty much can't do anything.]], {
+    enter = function (w)
+        w:set_prompt()
+        w:set_input()
+    end,
+})
+
+new_mode("admin", [[Sort of like command mode, but just for a specific password.]], {
+    enter = function (w)
+        w:set_prompt()
+        w:set_input("Enter Password:")
+    end,
+    changed = function (w, text)
+        -- Auto-exit command mode if user backspaces the prompt in the input bar.
+        if not string.match(text, "^Enter Password:") then w:set_mode("jail") end
+    end,
+    activate = function (w, text)
+        local cmd = string.sub(text, 16)
+        if globals.admin_password ~= nil
+           and cmd == globals.admin_password
+        then
+            w:set_mode()
+            w:set_prompt("-- ADMIN MODE ACTIVATED! --")
+        else
+            w:set_mode("jail")
+            w:set_prompt("-- INCORRECT PASSWORD --")
+        end
+    end,
+    history = {maxlen = 0},
+})

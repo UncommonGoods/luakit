@@ -94,6 +94,7 @@ webview.init_funcs = {
     end,
 
     -- Clicking a form field automatically enters insert mode.
+    --[===[
     form_insert_mode = function (view, w)
         view:add_signal("button-press", function (v, mods, button, context)
             -- Clear start search marker
@@ -121,6 +122,7 @@ webview.init_funcs = {
             end
         end)
     end,
+    ]===]
 
     -- Catch keys in non-passthrough modes
     mode_key_filter = function (view, w)
@@ -143,6 +145,7 @@ webview.init_funcs = {
     end,
 
     -- Reset the mode on navigation
+    --[===[
     mode_reset_on_nav = function (view, w)
         view:add_signal("load-status", function (v, status)
             if status == "provisional" and w.view == v then
@@ -152,6 +155,7 @@ webview.init_funcs = {
             end
         end)
     end,
+    ]===]
 
     -- Domain properties
     domain_properties = function (view, w)

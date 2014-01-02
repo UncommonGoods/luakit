@@ -48,6 +48,7 @@ menu_binds = {
 }
 
 -- Add binds to special mode "all" which adds its binds to all modes.
+--[===[
 add_binds("all", {
     key({}, "Escape", "Return to `normal` mode.",
         function (w) w:set_mode() end),
@@ -101,6 +102,30 @@ add_binds("all", {
 
     but({"Shift"}, 5, "Scroll right.",
         function (w, m) w:scroll{ xrel =  scroll_step } end),
+})
+]===]
+
+local escape_binding = 
+
+add_binds("jail", {
+    key({}, ":", "Enter admin password.",
+        function (w)
+            if globals.admin_password == nil then
+                w:set_prompt("-- ADMIN MODE DISABLED --")
+            else
+                w:set_mode("admin")
+            end
+        end),
+})
+
+add_binds("admin", {
+    key({}, "Escape", "Return to `jail` mode.",
+        function (w) w:set_mode("jail") end),
+})
+
+add_binds("command", {
+    key({}, "Escape", "Return to `normal` mode.",
+        function (w) w:set_mode() end),
 })
 
 add_binds("normal", {
@@ -490,6 +515,9 @@ add_cmds({
 
     cmd("c[lose]", "Close current tab.",
         function (w) w:close_tab() end),
+
+    cmd("jail", "Enter jail mode.",
+        function (w) w:set_mode("jail") end),
 
     cmd("print", "Print current page.",
         function (w) w.view:eval_js("print()") end),

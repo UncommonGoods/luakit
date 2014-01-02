@@ -1,13 +1,13 @@
 -- Global variables for luakit
 globals = {
     homepage            = "http://heyyeyaaeyaaaeyaeyaa.com",
- -- homepage            = "http://github.com/mason-larobina/luakit",
     scroll_step         = 40,
     zoom_step           = 0.1,
     max_cmd_history     = 100,
     max_srch_history    = 100,
  -- http_proxy          = "http://example.com:3128",
     default_window_size = "800x600",
+    admin_password      = nil, -- set this for production, or else admin will not work
 
  -- Disables loading of hostnames from /etc/hosts (for large host files)
  -- load_etc_hosts      = false,
@@ -51,17 +51,12 @@ soup.accept_policy = cookie_policy.always
 -- it to avoid collisions with lua's string.format characters.
 -- See: http://www.lua.org/manual/5.1/manual.html#pdf-string.format
 search_engines = {
-    duckduckgo  = "https://duckduckgo.com/?q=%s",
-    github      = "https://github.com/search?q=%s",
-    google      = "https://google.com/search?q=%s",
-    imdb        = "http://www.imdb.com/find?s=all&q=%s",
-    wikipedia   = "https://en.wikipedia.org/wiki/Special:Search?search=%s",
 }
 
 -- Set google as fallback search engine
-search_engines.default = search_engines.google
+-- search_engines.default = nil
 -- Use this instead to disable auto-searching
---search_engines.default = "%s"
+search_engines.default = "%s"
 
 -- Per-domain webview properties
 -- See http://webkitgtk.org/reference/webkitgtk/stable/WebKitWebSettings.html
