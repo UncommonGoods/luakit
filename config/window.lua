@@ -862,6 +862,14 @@ function window.new(uris)
     -- open in fullscreen
     w.win.fullscreen = true
 
+    -- disable dev tools
+    w.view.enable_developer_extras = false
+    w.view.enable_default_context_menu = false
+
+    --[[ TODO: go through `common/tokenize.list`
+    -- disable other "enable_" prefixed tokens that
+    -- are potentially dangerous. ]]
+
     return w
 end
 
