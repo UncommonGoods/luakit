@@ -126,11 +126,14 @@ webview.init_funcs = {
 
     -- Catch keys in non-passthrough modes
     mode_key_filter = function (view, w)
-        view:add_signal("key-press", function ()
+        local press_func = function ()
             if not w.mode.passthrough then
                 return true
             end
-        end)
+        end
+        view:add_signal("key-press", press_func)
+        view:add_signal("button-press", press_func)
+        view:add_signal("button-double-click", press_func)
     end,
 
     -- Try to match a button event to a users button binding else let the

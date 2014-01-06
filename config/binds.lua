@@ -105,7 +105,8 @@ add_binds("all", {
 })
 ]===]
 
-local escape_binding = 
+local escape_bind = key({}, "Escape", "Return to `normal` mode.",
+    function (w) w:set_mode() end)
 
 add_binds("jail", {
     key({}, ":", "Enter admin password.",
@@ -123,10 +124,7 @@ add_binds("admin", {
         function (w) w:set_mode("jail") end),
 })
 
-add_binds("command", {
-    key({}, "Escape", "Return to `normal` mode.",
-        function (w) w:set_mode() end),
-})
+add_binds("command", {escape_bind})
 
 add_binds("normal", {
     -- Autoparse the `[count]` before a binding and re-call the hit function
@@ -449,6 +447,7 @@ add_binds("insert", {
     key({"Control"}, "z",
         "Enter `passthrough` mode, ignores all luakit keybindings.",
         function (w) w:set_mode("passthrough") end),
+    escape_bind,
 })
 
 readline_bindings = {
